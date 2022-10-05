@@ -29,7 +29,9 @@ public class DirectorioClient {
         while (m){
             input = JOptionPane.showInputDialog("Menú Principal"
                     + "1. Añadir contacto"
-                    + "2. Mover a otra lista");
+                    + "2. Mover a otra lista"
+                    + "3. Imprimir lista");
+            boolean existente=false;
             if (input.equals("1")){
                 nNombre = JOptionPane.showInputDialog("Inserte el Nombre");
                 nTelefono = JOptionPane.showInputDialog("Inserte el telefono");
@@ -38,12 +40,12 @@ public class DirectorioClient {
                         + "1. Lista Nacional"+""
                         + "2. Lista Internacional");
                 nContacto = new Contacto(nNombre, nTelefono, nCiudad);
-                boolean existente=false;
+                
                 if (lista.equals("1")){
                     for (int i = 0; i<contactNat.getSize(); i++){
                         existente = contactNat.get(i).equals(nContacto);
                     }
-                    if (existente){
+                    if (!existente){
                         contactNat.add(nContacto);
                     }else{
                         JOptionPane.showMessageDialog(null, "El contacto ya existe en esta lista");
@@ -52,18 +54,50 @@ public class DirectorioClient {
                     for (int i = 0; i<contactInter.getSize(); i++){
                         existente = contactInter.get(i).equals(nContacto);
                     }
-                    if (existente){
+                    if (!existente){
                         contactInter.add(nContacto);
                     }else{
                         JOptionPane.showMessageDialog(null, "El contacto ya existe en esta lista");
                     }
                 }
             }else if (input.equals("2")){
-                input = JOptionPane.showInputDialog("");
+                int index=0;
+                input = JOptionPane.showInputDialog("En que lista esta el contacto que quiere mover?"
+                        + "1. Lista nacional"
+                        + "2. Lista internacional");
+                if (input.equals("1")){
+                    input = JOptionPane.showInputDialog("Digite el nombre o el numero de contacto a cambiar");
+                    for (int i = 0; i<contactNat.getSize(); i++){
+                        existente = contactNat.get(i).getNombre().equals(input);
+                        existente = contactNat.get(i).getTelefono().equals(input);
+                        if (existente) index = i;
+                    }
+                    if (existente){
+                        contactInter.add(contactNat.get(index));
+                        contactNat.delete(contactNat.get(index));
+                    } else {
+                        JOptionPane.showMessageDialog( null, "El contacto no existe");
+                    }
+                } else if (input.equals("2")){
+                    input = JOptionPane.showInputDialog("Digite el nombre o el numero de contacto a cambiar");
+                    for (int i = 0; i<contactInter.getSize(); i++){
+                        existente = contactInter.get(i).getNombre().equals(input);
+                        existente = contactInter.get(i).getTelefono().equals(input);
+                        if (existente) index = i;
+                    }
+                    if (existente){
+                        contactNat.add(contactInter.get(index));
+                        contactInter.delete(contactInter.get(index));
+                    } else {
+                        JOptionPane.showMessageDialog( null, "El contacto no existe");
+                    }
+                } else if (input.equals("3")){
+                    input = JOptionPane.showInputDialog("Cual lista quiere imprimir"
+                            + "1. Lista nacional"
+                            + "2. Lista internacional"
+                            + "3. Todas las listas");
+                }
             }
-            
         }
-        
     }
-    
 }
