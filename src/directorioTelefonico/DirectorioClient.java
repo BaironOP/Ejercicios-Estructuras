@@ -30,7 +30,8 @@ public class DirectorioClient {
             input = JOptionPane.showInputDialog("Menú Principal"
                     + "1. Añadir contacto"
                     + "2. Mover a otra lista"
-                    + "3. Imprimir lista");
+                    + "3. Imprimir lista"
+                    + "4. Buscar contacto");
             boolean existente=false;
             if (input.equals("1")){
                 nNombre = JOptionPane.showInputDialog("Inserte el Nombre");
@@ -92,10 +93,33 @@ public class DirectorioClient {
                         JOptionPane.showMessageDialog( null, "El contacto no existe");
                     }
                 } else if (input.equals("3")){
-                    input = JOptionPane.showInputDialog("Cual lista quiere imprimir"
+                    input = JOptionPane.showInputDialog("Cual lista quiere imprimir?"
                             + "1. Lista nacional"
                             + "2. Lista internacional"
                             + "3. Todas las listas");
+                    if (input.equals("1")){
+                        for (int i = 0; i<contactNat.getSize(); i++){
+                            System.out.println(contactNat.get(i).nombre+""+contactNat.get(i).telefono+""+contactNat.get(i).ciudad);
+                        }
+                    }else if (input.equals("2")){
+                        for (int i = 0; i<contactInter.getSize(); i++){
+                            System.out.println(contactInter.get(i).nombre+""+contactInter.get(i).telefono+""+contactInter.get(i).ciudad);
+                        }
+                    }else if (input.equals("3")){
+                        for (int i = 0; i<contactNat.getSize(); i++){
+                            System.out.println(contactNat.get(i).nombre+""+contactNat.get(i).telefono+""+contactNat.get(i).ciudad);
+                        }
+                        for (int i = 0; i<contactInter.getSize(); i++){
+                            System.out.println(contactInter.get(i).nombre+""+contactInter.get(i).telefono+""+contactInter.get(i).ciudad);
+                        }
+                    }
+                }else if (input.equals("4")){
+                    input = JOptionPane.showInputDialog("En que lista esta el contacto que quiere mover?"
+                        + "1. Lista nacional"
+                        + "2. Lista internacional");
+                    if (input.equals("1")){
+                        
+                    }
                 }
             }
         }
