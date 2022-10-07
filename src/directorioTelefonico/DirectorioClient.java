@@ -114,10 +114,33 @@ public class DirectorioClient {
                         }
                     }
                 }else if (input.equals("4")){
-                    input = JOptionPane.showInputDialog("En que lista esta el contacto que quiere mover?"
+                    input = JOptionPane.showInputDialog("En que lista esta el contacto que quiere buscar?"
                         + "1. Lista nacional"
                         + "2. Lista internacional");
                     if (input.equals("1")){
+                        input = JOptionPane.showInputDialog("Digite el nombre o el numero de contacto a buscar");
+                        for (int i = 0; i<contactNat.getSize(); i++){
+                            existente = contactNat.get(i).getNombre().equals(input);
+                            existente = contactNat.get(i).getTelefono().equals(input);
+                            if (existente) index = i;
+                        }
+                        if (existente){
+                            JOptionPane.showMessageDialog( null, contactNat.get(index).toString());
+                        } else {
+                            JOptionPane.showMessageDialog( null, "El contacto no existe");
+                        }
+                    } else if (input.equals("2")){
+                        input = JOptionPane.showInputDialog("Digite el nombre o el numero de contacto a buscar");
+                        for (int i = 0; i<contactInter.getSize(); i++){
+                            existente = contactInter.get(i).getNombre().equals(input);
+                            existente = contactInter.get(i).getTelefono().equals(input);
+                            if (existente) index = i;
+                        }
+                        if (existente){
+                            JOptionPane.showMessageDialog( null, contactInter.get(index).toString());
+                        } else {
+                            JOptionPane.showMessageDialog( null, "El contacto no existe");
+                        }
                         
                     }
                 }

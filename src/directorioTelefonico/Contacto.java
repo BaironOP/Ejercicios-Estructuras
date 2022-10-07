@@ -70,7 +70,9 @@ public class Contacto {
         }
         return true;
     }
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return "Contacto{" + "nombre=" + nombre + ", telefono=" + telefono + ", ciudad=" + ciudad + '}';
+    }
 }
